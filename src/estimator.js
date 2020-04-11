@@ -18,15 +18,14 @@ function chain() {
     let currentlyInfected = 0;
 
     currentlyInfected = reportedCases * 10;
-
     return currentlyInfected;
   };
 
   severeImpact.currentlyInfected = function estimateSevereCurrentlyInfected() {
     const { reportedCases } = data;
-    const severeCurrentlyInfected = 0;
+    let severeCurrentlyInfected = 0;
 
-    currentlyInfected = reportedCases * 50;
+    severeCurrentlyInfected = reportedCases * 50;
 
     return severeCurrentlyInfected;
   };
@@ -53,9 +52,9 @@ function chain() {
     const { infectionsByRequestedTime } = impact;
     let severeCasesByRequestedTime = 0;
 
-    severeCasesByRequestedTime = infectionsByRequestedTime / 100 * 15;
+    const multiply = infectionsByRequestedTime * 15;
 
-
+    severeCasesByRequestedTime = multiply / 100;
     return severeCasesByRequestedTime;
   };
 
@@ -63,7 +62,9 @@ function chain() {
     const { infectionsByRequestedTime } = severeImpact;
     let moreSevereCasesByRequestedTime = 0;
 
-    moreSevereCasesByRequestedTime = infectionsByRequestedTime / 100 * 15;
+    const multiply = infectionsByRequestedTime * 20;
+
+    moreSevereCasesByRequestedTime = multiply / 100;
 
 
     return moreSevereCasesByRequestedTime;
@@ -94,7 +95,8 @@ function chain() {
     const { infectionsByRequestedTime } = impact;
     let casesForICUByRequestedTime = 0;
 
-    casesForICUByRequestedTime = infectionsByRequestedTime / 100 * 5;
+    const multiply = infectionsByRequestedTime * 5;
+    casesForICUByRequestedTime = multiply / 100;
 
 
     return casesForICUByRequestedTime;
@@ -104,7 +106,8 @@ function chain() {
     const { infectionsByRequestedTime } = impact;
     let severeCasesForICUByRequestedTime = 0;
 
-    severeCasesForICUByRequestedTime = infectionsByRequestedTime / 100 * 15;
+    const multiply = infectionsByRequestedTime * 15;
+    severeCasesForICUByRequestedTime = multiply / 100;
 
 
     return severeCasesForICUByRequestedTime;
@@ -114,20 +117,22 @@ function chain() {
     const { infectionsByRequestedTime } = impact;
     let casesForVentilatorsByRequestedTime = 0;
 
-    casesForVentilatorsByRequestedTime = infectionsByRequestedTime / 100 * 2;
+    const multiply = infectionsByRequestedTime * 2;
+    casesForVentilatorsByRequestedTime = multiply / 100;
 
 
     return casesForVentilatorsByRequestedTime;
   };
 
-  severeImpact.severeCasesForVentilatorsByRequestedTime = function estimateSevereCasesForVentillators() {
+  severeImpact.casesForVentilatorsByRequestedTime2 = function estimatecasesForVentillators2() {
     const { infectionsByRequestedTime } = impact;
-    let severeCasesForVentilatorsByRequestedTime = 0;
+    let casesForVentilatorsByRequestedTime2 = 0;
 
-    severeCasesForVentilatorsByRequestedTime = infectionsByRequestedTime / 100 * 5;
+    const multiply = infectionsByRequestedTime * 5;
+    casesForVentilatorsByRequestedTime2 = multiply / 100;
 
 
-    return severeCasesForVentilatorsByRequestedTime;
+    return casesForVentilatorsByRequestedTime2;
   };
 
   impact.dollarsInFlight = function estimateDollarsInflight() {
@@ -155,20 +160,7 @@ function chain() {
 
 
 const covid19ImpactEstimator = (data) => {
-  const estimator = chain(
-    // Challenge-1
-    estimateCurrentlyInfected,
-    estimateProjectedInfections,
-
-    // Challenge-2
-    estimateSevereCases,
-    estimateBedSpaceAvailability,
-
-    // Challenge-3
-    estimateCasesForICU,
-    estimateCasesForVentillators,
-    estimateDollarsInflight
-  );
+  const estimator = chain();
   return estimator({
     data,
     impact: {},
